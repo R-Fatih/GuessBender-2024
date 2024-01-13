@@ -1,0 +1,6 @@
+@GuessBender_2024.WebApi_HostAddress = http://localhost:5077
+
+GET {{GuessBender_2024.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
