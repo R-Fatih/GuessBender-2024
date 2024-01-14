@@ -12,7 +12,7 @@
         public bool? MS2 { get; set; }
         public bool? MSX { get; set; }
         public Match Match { get; set; }
-        public ApplicationUser User { get; set; }
+        public User User { get; set; }
     }
 
 }

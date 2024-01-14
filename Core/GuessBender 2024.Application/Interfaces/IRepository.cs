@@ -15,6 +15,7 @@ namespace GuessBender_2024.Application.Interfaces
         Task UpdateAsync(T entity);
         Task RemoveAsync(T entity);
         Task<T?> GetByFilterAsync(Expression<Func<T, bool>> filter);
+        Task<List<T?>> GetByFilterListAsync(Expression<Func<T, bool>> filter);
         Task<List<T>> Include(Expression<Func<T, object>> entity);
     }
 }

@@ -1,12 +1,15 @@
 ﻿using GuessBender_2024.Application.Features.Mediator.Commands.TeamCommands;
 using GuessBender_2024.Application.Features.Mediator.Queries.TeamQueries;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GuessBender_2024.WebApi.Controllers
 {
+    [Authorize(AuthenticationSchemes = "Bearer")]
+
     [Route("api/[controller]")]
     [ApiController]
     public class TeamsController : ControllerBase

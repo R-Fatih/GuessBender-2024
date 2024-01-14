@@ -1,37 +1,38 @@
-﻿//using GuessBender_2024.Application.Dtos;
-//using GuessBender_2024.Application.Features.Mediator.Results.AppUserResults;
-//using Microsoft.IdentityModel.Tokens;
-//using System;
-//using System.Collections.Generic;
-//using System.IdentityModel.Tokens.Jwt;
-//using System.Linq;
-//using System.Security.Claims;
-//using System.Text;
-//using System.Threading.Tasks;
+﻿using GuessBender_2024.Application.Dtos;
 
-//namespace GuessBender_2024.Application.Tools
-//{
-//    public class JwtTokenGenerator
-//	{
-//		//public static TokenResponseDto GenerateToken(GetCheckAppUserQueryResult result)
-//		//{
-//		//	var claims = new List<Claim>();
-//		//	if (!string.IsNullOrWhiteSpace(result.Role)) 
-//		//	claims.Add(new Claim(ClaimTypes.Role, result.Role));
+using GuessBender_2024.Application.Features.Mediator.Results.AuthorizationResults;
+using Microsoft.IdentityModel.Tokens;
+using System;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
+using System.Security.Claims;
+using System.Text;
+using System.Threading.Tasks;
 
-//		//	claims.Add(new Claim(ClaimTypes.NameIdentifier, result.Id.ToString()));
+namespace GuessBender_2024.Application.Tools
+{
+	public class JwtTokenGenerator
+	{
+		public static TokenResponseDto GenerateToken(LoginQueryResult result)
+		{
+			var claims = new List<Claim>();
+			if (!string.IsNullOrWhiteSpace(result.Role))
+				claims.Add(new Claim(ClaimTypes.Role, result.Role));
 
-//		//	if (!string.IsNullOrWhiteSpace(result.UserName))
-//		//		claims.Add(new Claim("Username", result.UserName));
+			claims.Add(new Claim(ClaimTypes.NameIdentifier, result.Id.ToString()));
 
-//		//	var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtTokenDefaults.Key));
-//		//	var signingCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+			if (!string.IsNullOrWhiteSpace(result.UserName))
+				claims.Add(new Claim("Username", result.UserName));
 
-//		//	var expireDate = DateTime.UtcNow.AddDays(JwtTokenDefaults.Expire);
-//		//	JwtSecurityToken token = new JwtSecurityToken(JwtTokenDefaults.ValidIssuer, JwtTokenDefaults.ValidAudience, claims, DateTime.UtcNow, expireDate, signingCredentials);
-//		//	JwtSecurityTokenHandler tokenHandler= new();
-//		//	return new TokenResponseDto(tokenHandler.WriteToken(token), expireDate);
+			var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtTokenDefaults.Key));
+			var signingCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-//		//}
-//	}
-//}
+			var expireDate = DateTime.UtcNow.AddDays(JwtTokenDefaults.Expire);
+			JwtSecurityToken token = new JwtSecurityToken(JwtTokenDefaults.ValidIssuer, JwtTokenDefaults.ValidAudience, claims, DateTime.UtcNow, expireDate, signingCredentials);
+			JwtSecurityTokenHandler tokenHandler = new();
+			return new TokenResponseDto(tokenHandler.WriteToken(token), expireDate);
+
+		}
+	}
+}

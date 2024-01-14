@@ -14,8 +14,8 @@ namespace GuessBender_2024.Domain.Entities
         public string User1Id { get; set; }
         public string User2Id { get; set; }
         [NotMapped]
-		public ApplicationUser? User1 { get; set; }
+		public User? User1 { get; set; }
 		[NotMapped]
-		public ApplicationUser? User2 { get; set; }
+		public User? User2 { get; set; }
 	}
 }

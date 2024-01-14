@@ -11,17 +11,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontends", "Frontends", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{8DEE7A79-4A75-469D-A06E-587BAABAF8C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuessBender 2024.Application", "Core\GuessBender 2024.Application\GuessBender 2024.Application.csproj", "{B9162A9F-ADBC-4ABD-947A-F2459ABDCE4F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GuessBender 2024.Application", "Core\GuessBender 2024.Application\GuessBender 2024.Application.csproj", "{B9162A9F-ADBC-4ABD-947A-F2459ABDCE4F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuessBender 2024.Domain", "Core\GuessBender 2024.Domain\GuessBender 2024.Domain.csproj", "{4BFC52D0-695E-482D-8B92-6F0CF5ABE040}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GuessBender 2024.Domain", "Core\GuessBender 2024.Domain\GuessBender 2024.Domain.csproj", "{4BFC52D0-695E-482D-8B92-6F0CF5ABE040}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuessBender 2024.Persistance", "Infrastructure\GuessBender 2024.Persistance\GuessBender 2024.Persistance.csproj", "{73E0AAEB-3EB4-44F7-803C-DA80578D0DC2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GuessBender 2024.Persistance", "Infrastructure\GuessBender 2024.Persistance\GuessBender 2024.Persistance.csproj", "{73E0AAEB-3EB4-44F7-803C-DA80578D0DC2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuessBender 2024.WebApi", "Presentation\GuessBender 2024.WebApi\GuessBender 2024.WebApi.csproj", "{FC9145AF-AE1F-48C3-8706-22408FBB40BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GuessBender 2024.WebApi", "Presentation\GuessBender 2024.WebApi\GuessBender 2024.WebApi.csproj", "{FC9145AF-AE1F-48C3-8706-22408FBB40BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuessBender 2024.Dtos", "Frontends\GuessBender 2024.Dtos\GuessBender 2024.Dtos.csproj", "{72639133-A1A8-42D2-AEC4-FE44DAC2D54C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GuessBender 2024.Dtos", "Frontends\GuessBender 2024.Dtos\GuessBender 2024.Dtos.csproj", "{72639133-A1A8-42D2-AEC4-FE44DAC2D54C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuessBender 2024.WebUI", "Frontends\GuessBender 2024.WebUI\GuessBender 2024.WebUI.csproj", "{8127D877-E6F0-4AE8-840E-6FCCB5A1CBA2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GuessBender 2024.WebUI", "Frontends\GuessBender 2024.WebUI\GuessBender 2024.WebUI.csproj", "{8127D877-E6F0-4AE8-840E-6FCCB5A1CBA2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
