@@ -6,7 +6,8 @@
 		public string Name { get; set; }
 		public string Confederation { get; set; }
 		public string LogoUrl { get; set; }
-
+		List<League> Leagues { get; set; }
+		List<Team> Teams { get; set; }
 	}
 
 }

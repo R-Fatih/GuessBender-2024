@@ -26,7 +26,9 @@ namespace GuessBender_2024.Application.Features.Mediator.Handlers.CountryHandler
             return values.Select(x => new GetCountryQueryResult
             {
                 Id = x.Id,
-                Name = x.Name
+                Name = x.Name,
+                LogoUrl = x.LogoUrl,
+                Confederation=x.Confederation
             }).ToList();
         }
     }

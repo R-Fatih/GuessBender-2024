@@ -18,25 +18,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Mediator\Commands\CountryCommands\" />
     <Folder Include="Features\Mediator\Handlers\FriendHandlers\" />
-    <Folder Include="Features\Mediator\Handlers\LeagueHandlers\" />
-    <Folder Include="Features\Mediator\Handlers\MatchHandlers\" />
     <Folder Include="Features\Mediator\Handlers\PredictionHandlers\" />
-    <Folder Include="Features\Mediator\Handlers\TeamHandlers\" />
     <Folder Include="Features\Mediator\Handlers\UserHandlers\" />
     <Folder Include="Features\Mediator\Queries\FriendQueries\" />
-    <Folder Include="Features\Mediator\Queries\LeagueQueries\" />
-    <Folder Include="Features\Mediator\Queries\MatchQueries\" />
     <Folder Include="Features\Mediator\Queries\PredictionQueries\" />
-    <Folder Include="Features\Mediator\Queries\TeamQueries\" />
     <Folder Include="Features\Mediator\Queries\UserQueries\" />
     <Folder Include="Features\Mediator\Results\UserResults\" />
     <Folder Include="Features\Mediator\Results\FriendResults\" />
-    <Folder Include="Features\Mediator\Results\LeagueResults\" />
     <Folder Include="Features\Mediator\Results\PredictionResults\" />
-    <Folder Include="Features\Mediator\Results\TeamResults\" />
-    <Folder Include="Features\Mediator\Results\MatchResults\" />
   </ItemGroup>
 
 </Project>

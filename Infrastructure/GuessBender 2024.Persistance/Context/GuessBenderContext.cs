@@ -18,7 +18,6 @@ namespace GuessBender_2024.Persistance.Context
         public DbSet<Prediction> Prediction { get; set; } = default!;
         public DbSet<League> League { get; set; } = default!;
         public DbSet<Country> Country { get; set; } = default!;
-        public DbSet<LeagueData> LeagueData { get; set; } = default!;
         public DbSet<ApplicationUser> User { get; set; } = default!;
         public DbSet<Friend> Friend { get; set; } = default!;
 

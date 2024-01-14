@@ -10,5 +10,7 @@ namespace GuessBender_2024.Application.Features.Mediator.Results.CountryResults
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string Confederation { get; set; }
+        public string LogoUrl { get; set; }
     }
 }
