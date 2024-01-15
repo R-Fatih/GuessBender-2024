@@ -1,0 +1,44 @@
+﻿@using GuessBender_2024.Dtos.CountryDtos
+
+@model UpdateCountryDto
+@{
+	ViewData["Title"] = "UpdateTeam";
+	Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+<div class="page-content">
+	<div class="container-fluid">
+
+		<!-- start page title -->
+		<div class="row">
+			<div class="col-xl-12">
+
+				<div class="card">
+					<div class="card-body">
+
+						<h4 class="card-title">Takım güncelleme</h4>
+						<p class="card-subtitle mb-4">Takım ile ilgili temel bilgileri eksiksiz doldurunuz.</p>
+
+						<form method="post">
+							<input asp-for="Id" type="hidden"/>
+							<div class="form-group">
+								<label for="exampleInputModel">Ülke adı</label>
+								<input asp-for=Name type="text" class="form-control" id="exampleInputModel" placeholder="Ülke adı">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputModel">Konfederasyon</label>
+								<input asp-for=Confederation type="text" class="form-control" id="exampleInputModel" placeholder="Konfederasyon">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputModel">Logo</label>
+								<input asp-for=LogoUrl type="number" class="form-control" id="exampleInputModel" placeholder="LogoUrl">
+							</div>
+							<button type="submit" class="btn btn-primary waves-effect waves-light">Kaydet</button>
+						</form>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div> 

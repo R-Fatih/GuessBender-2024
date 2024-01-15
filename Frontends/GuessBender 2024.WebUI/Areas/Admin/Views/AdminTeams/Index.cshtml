@@ -1,0 +1,73 @@
+﻿@using GuessBender_2024.Dtos.TeamDtos
+@model List<ResultTeamWithCountryDetailsDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 1;
+}
+<!-- Plugins css -->
+<link href="~/Admin/plugins/datatables/dataTables.bootstrap4.css" rel="stylesheet" type="text/css" />
+<link href="~/Admin/plugins/datatables/responsive.bootstrap4.css" rel="stylesheet" type="text/css" />
+<link href="~/Admin/plugins/datatables/buttons.bootstrap4.css" rel="stylesheet" type="text/css" />
+<link href="~/Admin/plugins/datatables/select.bootstrap4.css" rel="stylesheet" type="text/css" />
+<div class="page-content">
+    <div class="container-fluid">
+
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Takım listesi</h4>
+                        <p class="card-subtitle mb-4">
+                            Takım ekleme, silme, güncellemei arama ve listeleme gibi işlemleri bu sayfa üzerinden gerçekletirebilirsiniz.
+                        </p>
+                        <div class="table-responsive">
+                            <table id="basic-datatable" class="table dt-responsive wrap">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Takım Adı</th>
+                                        <th>Logo</th>
+                                        <th>Kısaltma</th>
+                                        <th>Ülke adı</th>
+                                        <th>Sil</th>
+                                        <th>Güncelle</th>
+                                        <th> </th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+
+                                        <tr>
+                                            <td>@item.Id</td>
+                                            <td>@item.Name</td>
+                                            <td><img width="50" heigth="50" src="https://raw.githubusercontent.com/R-Fatih/ACCDB/main/Logos/TeamLogos/@(@item.LogoId).png" /></td>
+                                            <td>@item.Abbr</td>
+                                            <td>@item.CountryName</td>
+                                            <td><a href="/Admin/AdminTeams/RemoveTeam/@item.Id" class="btn btn-outline-danger">Sil</a></td>
+                                            <td><a href="/Admin/AdminTeams/UpdateTeam/@item.Id" class="btn btn-outline-success">Güncelle</a></td>
+                                            <td></td>
+                                        </tr>
+                                        count++;
+                                    }
+                                </tbody>
+                            </table>
+                            <a href="/Admin/AdminTeams/CreateTeam/" class="btn btn-primary">Yeni takım</a>
+                        </div>
+
+                    </div>
+                    <!-- end card-body-->
+                </div>
+                <!-- end card -->
+
+            </div>
+            <!-- end col -->
+            <!-- end col -->
+        </div>
+        <!-- end page title -->
+
+    </div> <!-- container-fluid -->
+</div>

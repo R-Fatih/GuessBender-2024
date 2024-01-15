@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GuessBender_2024.WebApi.Controllers
 {
-    [Authorize(AuthenticationSchemes = "Bearer")]
 
     [Route("api/[controller]")]
     [ApiController]

@@ -7,4 +7,18 @@
     <RootNamespace>GuessBender_2024.WebUI</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="ViewComponents\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter" Version="8.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GuessBender 2024.Dtos\GuessBender 2024.Dtos.csproj" />
+  </ItemGroup>
+
 </Project>
