@@ -1,6 +1,6 @@
 ﻿@using GuessBender_2024.Dtos.TeamDtos
 
-@model CreateTeamDto
+@model (CreateTeamDto,CreateTeamDto)
 @{
 	ViewData["Title"] = "CreateTeam";
 	Layout = "~/Views/AdminLayout/Index.cshtml";
@@ -21,19 +21,23 @@
 						<form method="post">
 							<div class="form-group">
 								<label for="exampleInputModel">Takım adı</label>
-								<input asp-for=Name type="text" class="form-control" id="exampleInputModel" placeholder="Takım adı">
+								<input asp-for=Item1.Name type="text" class="form-control" id="exampleInputModel" placeholder="Takım adı">
 							</div>
 							<div class="form-group">
 								<label for="exampleInputModel">Kısaltma</label>
-								<input asp-for=Abbr type="text" class="form-control" id="exampleInputModel" placeholder="Kısaltma">
+								<input asp-for=Item1.Abbr type="text" class="form-control" id="exampleInputModel" placeholder="Kısaltma">
 							</div>
 							<div class="form-group">
 								<label for="exampleInputModel">Ülke</label>
-								@Html.DropDownListFor(x => x.CountryId, (List<SelectListItem>)ViewBag.countries, new { @class = "form-control" })
+								@Html.DropDownListFor(x => x.Item1.CountryId, (List<SelectListItem>)ViewBag.countries, new { @class = "form-control" })
 							</div>
 							<div class="form-group">
 								<label for="exampleInputModel">Kısaltma</label>
-								<input asp-for=LogoId type="number" class="form-control" id="exampleInputModel" placeholder="Logo id">
+								<input asp-for=Item1.LogoId type="number" class="form-control" id="exampleInputModel" placeholder="Logo id">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputModel">Logo Url</label>
+								<input asp-for=Item2.Name type="text" class="form-control" id="exampleInputModel" placeholder="Logo url">
 							</div>
 							<button type="submit" class="btn btn-primary waves-effect waves-light">Kaydet</button>
 						</form>
