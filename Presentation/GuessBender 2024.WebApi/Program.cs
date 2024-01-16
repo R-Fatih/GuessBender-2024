@@ -15,6 +15,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using GuessBender_2024.Application.Interfaces.AuthorizationInterfaces;
 using GuessBender_2024.Persistance.Repositories.AuthorizationRepositories;
+using GuessBender_2024.Application.Interfaces.StandingInterfaces;
+using GuessBender_2024.Persistance.Repositories.StandingRepositories;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -42,6 +44,7 @@ builder.Services.AddScoped<GuessBenderContext>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped(typeof(IMatchRepository), typeof(MatchRepository));
 builder.Services.AddScoped(typeof(IAuthorizationRepository), typeof(AuthorizationRepository));
+builder.Services.AddScoped(typeof(IStandingRepository), typeof(StandingRepository));
 
 
 
