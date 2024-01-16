@@ -1,0 +1,55 @@
+﻿@using GuessBender_2024.Dtos.MatchDtos
+
+@model UpdateMatchDto
+@{
+	ViewData["Title"] = "UpdateMatch";
+	Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+<div class="page-content">
+	<div class="container-fluid">
+
+		<!-- start page title -->
+		<div class="row">
+			<div class="col-xl-12">
+
+				<div class="card">
+					<div class="card-body">
+
+						<h4 class="card-title">Maç güncelleme</h4>
+						<p class="card-subtitle mb-4">Maç ile ilgili temel bilgileri eksiksiz doldurunuz.</p>
+						
+						<form method="post">
+							<input asp-for="Id" type="hidden"/>
+							<input asp-for="Expired" type="hidden"/>
+							<input asp-for="HomeTeamId" type="hidden"/>
+							<input asp-for="AwayTeamId" type="hidden"/>
+							<div class="form-group">
+								<label for="exampleInputModel">Tarih</label>
+								<input asp-for=Date type="text" class="form-control" id="exampleInputModel" placeholder="Tarih">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputModel">MS1</label>
+								<input asp-for=HomeMS type="text" class="form-control" id="exampleInputModel" placeholder="MS1">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputModel">MS2</label>
+								<input asp-for=AwayMS type="text" class="form-control" id="exampleInputModel" placeholder="MS2">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputModel">Lig</label>
+								@Html.DropDownListFor(x => x.LeagueId, (List<SelectListItem>)ViewBag.leagues, new { @class = "form-control" })
+							</div>
+							<div class="form-group">
+								<label for="exampleInputModel">Maçkolik Kod</label>
+								<input asp-for=Code type="text" class="form-control" id="exampleInputModel" placeholder="Maçkolik Kod">
+							</div>
+							<button type="submit" class="btn btn-primary waves-effect waves-light">Kaydet</button>
+						</form>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div> 

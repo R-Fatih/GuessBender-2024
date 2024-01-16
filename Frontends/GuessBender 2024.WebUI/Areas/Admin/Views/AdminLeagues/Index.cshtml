@@ -1,0 +1,74 @@
+﻿@using GuessBender_2024.Dtos.LeagueDtos
+@model List<ResultLeagueWithCountryDetailsDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 1;
+}
+<!-- Plugins css -->
+<link href="~/Admin/plugins/datatables/dataTables.bootstrap4.css" rel="stylesheet" type="text/css" />
+<link href="~/Admin/plugins/datatables/responsive.bootstrap4.css" rel="stylesheet" type="text/css" />
+<link href="~/Admin/plugins/datatables/buttons.bootstrap4.css" rel="stylesheet" type="text/css" />
+<link href="~/Admin/plugins/datatables/select.bootstrap4.css" rel="stylesheet" type="text/css" />
+<div class="page-content">
+    <div class="container-fluid">
+
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Lig listesi</h4>
+                        <p class="card-subtitle mb-4">
+                            Lig ekleme, silme, güncellemei arama ve listeleme gibi işlemleri bu sayfa üzerinden gerçekletirebilirsiniz.
+                        </p>
+                        <div class="table-responsive">
+                            <table id="basic-datatable" class="table dt-responsive wrap">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Lig Adı</th>
+                                        <th>Logo</th>
+                                        <th>Kısaltma</th>
+                                        <th>Ülke adı</th>
+                                        <th>Sil</th>
+                                        <th>Güncelle</th>
+                                        <th> </th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+
+                                        <tr>
+                                            <td>@item.Id</td>
+                                            <td>@item.Name</td>
+                                            <td><img width="50" heigth="50" src="https://raw.githubusercontent.com/R-Fatih/ACCDB/main/Logos/LeagueLogos/@(@item.Id).png" /></td>
+                                            <td>@item.Abbr</td>
+                                            <td>@item.CountryName</td>
+                                            <td><a href="/Admin/AdminLeagues/RemoveLeague/@item.Id" class="btn btn-outline-danger">Sil</a></td>
+                                            <td><a href="/Admin/AdminLeagues/UpdateLeague/@item.Id" class="btn btn-outline-success">Güncelle</a></td>
+                                            <td></td>
+                                        </tr>
+                                        count++;
+                                    }
+                                </tbody>
+                            </table>
+                            <a href="/Admin/AdminLeagues/CreateLeague/" class="btn btn-primary">Yeni lig</a>
+                            <a href="/Admin/AdminLeagues/CreateLeagueMultiple/" class="btn btn-primary">Yeni lig (toplu)</a>
+                        </div>
+
+                    </div>
+                    <!-- end card-body-->
+                </div>
+                <!-- end card -->
+
+            </div>
+            <!-- end col -->
+            <!-- end col -->
+        </div>
+        <!-- end page title -->
+
+    </div> <!-- container-fluid -->
+</div>
