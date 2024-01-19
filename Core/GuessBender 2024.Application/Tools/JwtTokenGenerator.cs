@@ -31,7 +31,7 @@ namespace GuessBender_2024.Application.Tools
 			var expireDate = DateTime.UtcNow.AddDays(JwtTokenDefaults.Expire);
 			JwtSecurityToken token = new JwtSecurityToken(JwtTokenDefaults.ValidIssuer, JwtTokenDefaults.ValidAudience, claims, DateTime.UtcNow, expireDate, signingCredentials);
 			JwtSecurityTokenHandler tokenHandler = new();
-			return new TokenResponseDto(tokenHandler.WriteToken(token), expireDate);
+			return new TokenResponseDto(tokenHandler.WriteToken(token), expireDate, result.Id.ToString(),result.UserName);
 
 		}
 	}

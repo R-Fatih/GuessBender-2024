@@ -11,6 +11,7 @@ namespace GuessBender_2024.Application.Interfaces.TeamInterfaces
     {
         List<Match> GetMatchWithTeamAndLeagueDetails();
         List<Match> GetMatchWithTeamAndLeagueDetailsByDate(DateTime date);
+        List<Match> GetMatchWithTeamAndLeagueDetailsByDatesBetween(DateTime date1,DateTime date2);
         Match GetMatchByIdWithTeamAndLeagueDetails(int id);
     }
 }

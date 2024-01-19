@@ -40,6 +40,12 @@ namespace GuessBender_2024.WebApi.Controllers
         {
             return Ok(await _mediator.Send(new GetMatchWithTeamAndLeagueDetailsByDateQuery(date)));
         }
+        [Authorize(Roles = "Admin, Comp")]
+        [HttpGet("GetMatchWithTeamAndLeagueDetailssByDatesBetween")]
+        public async Task<IActionResult> GetMatchWithTeamAndLeagueDetailssByDatesBetween(DateTime date1,DateTime date2)
+        {
+            return Ok(await _mediator.Send(new GetMatchWithTeamAndLeagueDetailsByDatesBetweenQuery(date1,date2)));
+        }
 
         [Authorize(Roles = "Admin, Comp")]
         [HttpGet("GetMatchByIdWithTeamAndLeagueDetails")]

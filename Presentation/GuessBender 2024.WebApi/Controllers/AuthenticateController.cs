@@ -46,7 +46,7 @@ namespace GuessBender_2024.WebApi.Controllers
             var values = await _mediator.Send(command);
             if (values.IsExist)
                 return Created("", JwtTokenGenerator.GenerateToken(values));
-            else return BadRequest("Kullanıcı adu veya şifre hatalı");
+            else return BadRequest("Kullanıcı adı veya şifre hatalı");
         }
         [HttpPost("ResetPassword")]
         public async Task<IActionResult> ResetPassword(ResetPasswordQuery query)

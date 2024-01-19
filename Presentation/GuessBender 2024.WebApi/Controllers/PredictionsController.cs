@@ -43,5 +43,11 @@ namespace GuessBender_2024.WebApi.Controllers
         {
             return Ok(await _mediator.Send(new GetPredictionByDateQuery(date)));
         }
+        [Authorize(Roles = "Admin, Comp")]
+        [HttpGet("GetPredictionCountByMatchId")]
+        public async Task<IActionResult> GetPredictionCountByMatchId(int matchId)
+        {
+            return Ok(await _mediator.Send(new GetPredictionCountByMatchIdQuery(matchId)));
+        }
     }
 }

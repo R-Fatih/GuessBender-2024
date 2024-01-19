@@ -1,0 +1,16 @@
+﻿@model (DateTime,DateTime)
+@{
+	ViewData["Title"] = "UpdateMatchesMultiple";
+	Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-content">
+	<div class="container-fluid">
+		<form method="post">
+			<input id="date" asp-for=Item1 type="date" />
+			<input id="date" asp-for=Item2 type="date" />
+			<button type="submit" class="btn btn-primary waves-effect waves-light">Kaydet</button>
+		</form>
+	</div>
+
+</div>
