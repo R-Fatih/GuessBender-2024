@@ -1,6 +1,6 @@
 ﻿using GuessBender_2024.Application.Features.Mediator.Queries.MatchQueries;
 using GuessBender_2024.Application.Features.Mediator.Results.MatchResults;
-using GuessBender_2024.Application.Interfaces.TeamInterfaces;
+using GuessBender_2024.Application.Interfaces.MatchInterfaces;
 using MediatR;
 using System;
 using System.Collections.Generic;

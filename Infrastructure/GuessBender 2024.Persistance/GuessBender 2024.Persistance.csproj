@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Core\GuessBender 2024.Application\GuessBender 2024.Application.csproj" />
+    <ProjectReference Include="..\..\Core\GuessBender 2024.Domain\GuessBender 2024.Domain.csproj" />
   </ItemGroup>
 
 </Project>

@@ -20,40 +20,45 @@ namespace GuessBender_2024.WebApi.Controllers
             _mediator = mediator;
         }
 
-        [Authorize(Roles = "Admin, Comp")]
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> GetAllMatches()
         {
             return Ok(await _mediator.Send(new GetMatchQuery()));
         }
 
-        [Authorize(Roles = "Admin, Comp")]
+        [Authorize(Roles = "Admin")]
         [HttpGet("GetMatchWithTeamAndLeagueDetails")]
         public async Task<IActionResult> GetMatchWithTeamAndLeagueDetails()
         {
             return Ok(await _mediator.Send(new GetMatchWithTeamAndLeagueDetailsQuery()));
         }
 
-        [Authorize(Roles = "Admin, Comp")]
+        [Authorize(Roles = "Admin")]
         [HttpGet("GetMatchWithTeamAndLeagueDetailssByDate")]
         public async Task<IActionResult> GetMatchWithTeamAndLeagueDetailssByDate(DateTime date)
         {
             return Ok(await _mediator.Send(new GetMatchWithTeamAndLeagueDetailsByDateQuery(date)));
         }
-        [Authorize(Roles = "Admin, Comp")]
+        [Authorize(Roles = "Admin")]
         [HttpGet("GetMatchWithTeamAndLeagueDetailssByDatesBetween")]
         public async Task<IActionResult> GetMatchWithTeamAndLeagueDetailssByDatesBetween(DateTime date1,DateTime date2)
         {
             return Ok(await _mediator.Send(new GetMatchWithTeamAndLeagueDetailsByDatesBetweenQuery(date1,date2)));
         }
-
-        [Authorize(Roles = "Admin, Comp")]
+		[Authorize(Roles = "Admin, Comp")]
+		[HttpGet("GetMatchWithTeamAndLeagueAndPredictionDetailsByDateAndUserId")]
+		public async Task<IActionResult> GetMatchWithTeamAndLeagueAndPredictionDetailsByDateAndUserId(DateTime date1, string userId)
+		{
+			return Ok(await _mediator.Send(new GetMatchWithTeamAndLeagueAndPredictionDetailsByDateAndUserIdQuery(date1, userId)));
+		}
+		[Authorize(Roles = "Admin")]
         [HttpGet("GetMatchByIdWithTeamAndLeagueDetails")]
         public async Task<IActionResult> GetMatchByIdWithTeamAndLeagueDetails(int id)
         {
             return Ok(await _mediator.Send(new GetMatchByIdWithTeamAndLeagueDetailsQuery(id)));
         }
-         [Authorize(Roles = "Admin, Comp")]
+         [Authorize(Roles = "Admin")]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAllMatches(int id)
         {

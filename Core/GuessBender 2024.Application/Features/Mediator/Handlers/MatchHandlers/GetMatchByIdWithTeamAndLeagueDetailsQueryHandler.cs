@@ -1,7 +1,7 @@
 ﻿using GuessBender_2024.Application.Features.Mediator.Queries.MatchQueries;
 using GuessBender_2024.Application.Features.Mediator.Results.MatchResults;
 using GuessBender_2024.Application.Interfaces;
-using GuessBender_2024.Application.Interfaces.TeamInterfaces;
+using GuessBender_2024.Application.Interfaces.MatchInterfaces;
 using GuessBender_2024.Domain.Entities;
 using MediatR;
 using System;

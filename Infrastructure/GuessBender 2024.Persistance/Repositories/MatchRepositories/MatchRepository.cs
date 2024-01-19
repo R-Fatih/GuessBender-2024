@@ -1,4 +1,4 @@
-﻿using GuessBender_2024.Application.Interfaces.TeamInterfaces;
+﻿using GuessBender_2024.Application.Interfaces.MatchInterfaces;
 using GuessBender_2024.Domain.Entities;
 using GuessBender_2024.Persistance.Context;
 using Microsoft.EntityFrameworkCore;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace GuessBender_2024.Persistance.Repositories.TeamRepositories
+namespace GuessBender_2024.Persistance.Repositories.MatchRepositories
 {
     public class MatchRepository : IMatchRepository
     {
@@ -25,7 +25,12 @@ namespace GuessBender_2024.Persistance.Repositories.TeamRepositories
             return _context.Match.Include(x => x.HomeTeam).Include(y => y.AwayTeam).Include(z => z.League).Where(x => x.Id == id).FirstOrDefault();
         }
 
-        public List<Match> GetMatchWithTeamAndLeagueDetails()
+		public List<Match> GetMatchWithTeamAndLeagueAndPredictionDetailsByDateAndUserId(DateTime date, string userId)
+		{
+			return _context.Match.Include(x => x.HomeTeam).Include(y => y.AwayTeam).Include(z => z.League).Include(w=>w.Prediction).Where(x => x.Date.Date == date.Date).ToList();
+		}
+
+		public List<Match> GetMatchWithTeamAndLeagueDetails()
         {
             return _context.Match.Include(x => x.HomeTeam).Include(y => y.AwayTeam).Include(z => z.League).ToList();
         }
