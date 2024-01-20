@@ -1,0 +1,129 @@
+﻿@using GuessBender_2024.Dtos.MatchDtos
+@using GuessBender_2024.Dtos.PredictionDtos
+@model List<ResultMatchWithTeamAndLeagueAndPredictionDetailsByDateAndUserIdDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/UILayout/Index.cshtml";
+    int count = 0;
+}
+
+<link href="~/theme/thememain.css" rel="stylesheet" />
+<script>
+    function handler(e) {
+
+        //  alert(e.target.value);
+
+        // make a HTTP GET request and pass currentObject as a queryparam
+        //      var a = @Url.Action("Index", "Default", new RouteValueDictionary("xxx"));
+        //     a = a.replace("xxx", e.target.value)
+
+        var url = '@Url.Action("Index", "Default", new { dt = "__id__" })';
+        window.location.href = url.replace('__id__', e.target.value)
+        // window.location = a;
+
+
+    }
+
+</script>
+<script>
+    function GetButton(x, y) {
+        var button = document.getElementById(x + " " + y);
+        console.log(button.className);
+
+        if (button.className == "button") {
+            button.className = "button selected";
+            if (y.endsWith("1") && button.className == "button selected") {
+                var button2 = document.getElementById(x + " " + 2);
+                button2.setAttribute("disabled", "true");
+            }
+            if (y.endsWith("2") && button.className == "button selected") {
+                var button2 = document.getElementById(x + " " + 1);
+                button2.setAttribute("disabled", "true");
+            }
+            return "true";
+        }
+        else if (button.className == "button selected") {
+            button.className = "button";
+            if (y.endsWith("1") && button.className == "button") {
+                var button2 = document.getElementById(x + " " + 2);
+                button2.removeAttribute("disabled");
+            }
+            if (y.endsWith("2") && button.className == "button") {
+                var button2 = document.getElementById(x + " " + 1);
+                button2.removeAttribute("disabled");
+            }
+            return "false";
+
+        }
+
+
+    }
+
+</script>
+<div class="page-content">
+    <div class="container-fluid">
+
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Maç listesi</h4>
+                        <input id="date" value="@ViewBag.date" onchange="handler(event);" style="float:right" type="date" />
+                        <p class="card-subtitle mb-4">
+                            Maç ekleme, silme, güncellemei arama ve listeleme gibi işlemleri bu sayfa üzerinden gerçekletirebilirsiniz.
+                        </p>
+
+                        <div class="table-responsive">
+                            <table class="table dt-responsive wrap">
+                                <thead>
+                                    <tr>
+                                       
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+
+                                        <tr>
+                                            <td><img width="50" heigth="50" src="https://raw.githubusercontent.com/R-Fatih/ACCDB/main/Logos/TeamLogos/@(@item.HomeLogoId).png" /><img width="50" heigth="50" src="https://raw.githubusercontent.com/R-Fatih/ACCDB/main/Logos/TeamLogos/@(@item.AwayLogoId).png" /></td>
+                                            <td>@item.Date.ToShortTimeString()</td>
+                                           @*      <button @onclick="()=>onClick(match,'1')" style="" id="@match.Id 1" class="@getMSStatus(match.Prediction[0].MS1)" disabled="@((match.Prediction[0].HomeScore != null || match.Prediction[0].AwayScore != null) | match.Expired | match.Prediction[0].MS2)">1</button>
+                                                <button @onclick="()=>onClick(match,'X')" style="" id="@match.Id X" class="@getMSStatus(match.Prediction[0].MSX)" disabled="@((match.Prediction[0].HomeScore != null || match.Prediction[0].AwayScore != null) | match.Expired)">X</button>
+                                                <button @onclick="()=>onClick(match,'2')" style="" id="@match.Id 2" class="@getMSStatus(match.Prediction[0].MS2)" disabled="@((match.Prediction[0].HomeScore != null || match.Prediction[0].AwayScore != null) | match.Expired | match.Prediction[0].MS1)">2</button>
+                                        *@
+                                            <td><input disabled="@(item.Expired|(item.MS1!=null||item.MS2!=null||item.MSX!=null))" min="0" type="number" /><input  disabled="@(item.Expired|(item.MS1!=null||item.MS2!=null||item.MSX!=null))" min="0" type="number" /></td>
+                                            <td>  <button disabled="@((item.HomeScorePrediction != null || item.AwayScorePrediction != null) | item.Expired | item.MS2)" class="@(item.MS1 == true ? "button selected" : "button")" id="@item.Id 1" onclick="GetButton(@item.Id,'1')" style=""> 1</button>
+                                                <button disabled="@((item.HomeScorePrediction != null || item.AwayScorePrediction != null) | item.Expired)" class="@(item.MSX == true ? "button selected" : "button")" id="@item.Id X" onclick="GetButton(@item.Id,'X')" style="">X</button>
+                                                <button disabled="@((item.HomeScorePrediction  != null || item.AwayScorePrediction != null) | item.Expired | item.MS1)" class="@(item.MS2 == true ? "button selected" : "button")" id="@item.Id 2" onclick="GetButton(@item.Id,'2')" style="">2</button>
+                                            </td>
+                                     
+
+                                            <td>@item.HomeMS</td>
+                                            <td>@item.AwayMS</td>
+
+                                        </tr>
+                                        count++;
+                                    }
+                                </tbody>
+                            </table>
+                            <a href="/Admin/AdminMatches/CreateMatch/" class="btn btn-primary">Yeni maç</a>
+                         
+
+                        </div>
+
+                    </div>
+                    <!-- end card-body-->
+                </div>
+                <!-- end card -->
+
+            </div>
+            <!-- end col -->
+            <!-- end col -->
+        </div>
+        <!-- end page title -->
+
+    </div> <!-- container-fluid -->
+</div>
+

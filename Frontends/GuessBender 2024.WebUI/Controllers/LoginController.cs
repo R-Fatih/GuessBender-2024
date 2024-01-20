@@ -47,6 +47,7 @@ namespace GuessBender_2024.WebUI.Controllers
                     if (tokenModel.Token != null)
                     {
                         claims.Add(new Claim("accessToken", tokenModel.Token));
+                        claims.Add(new Claim("userId", tokenModel.UserId));
                         var claimsIdentity = new ClaimsIdentity(claims, JwtBearerDefaults.AuthenticationScheme);
                         var autProps = new AuthenticationProperties
                         {

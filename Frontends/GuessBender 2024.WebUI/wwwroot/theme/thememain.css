@@ -1,0 +1,33 @@
+﻿.button {
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: inline-block;
+    color: #fff;
+    font-family: sans-serif;
+    margin-right: 2px;
+    margin-left: 2px;
+    background-color: #000;
+    margin-bottom: 2px
+}
+
+    .button.selected {
+        background-color: #B30B00;
+        color: #000
+    }
+
+@media (min-width: 650px) {
+    .button:not(:disabled):hover {
+        background-color: #B30B00;
+        color: #000
+    }
+}
+
+@media (max-width: 650px) {
+    .button {
+        display: block;
+    }
+}
+input[type='number'] {
+    width: 40px;
+}

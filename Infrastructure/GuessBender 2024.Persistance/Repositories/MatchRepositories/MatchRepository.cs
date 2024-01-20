@@ -27,7 +27,7 @@ namespace GuessBender_2024.Persistance.Repositories.MatchRepositories
 
 		public List<Match> GetMatchWithTeamAndLeagueAndPredictionDetailsByDateAndUserId(DateTime date, string userId)
 		{
-			return _context.Match.Include(x => x.HomeTeam).Include(y => y.AwayTeam).Include(z => z.League).Include(w=>w.Prediction).Where(x => x.Date.Date == date.Date).ToList();
+			return _context.Match.Include(x => x.HomeTeam).Include(y => y.AwayTeam).Include(z => z.League).Include(w=>w.Prediction).Where(x => x.Date.Date == date.Date).OrderBy(x=>x.Date).ToList();
 		}
 
 		public List<Match> GetMatchWithTeamAndLeagueDetails()

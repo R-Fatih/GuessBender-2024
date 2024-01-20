@@ -1,10 +1,12 @@
 ﻿using GuessBender_2024.Application.Features.Mediator.Queries.MatchQueries;
 using GuessBender_2024.Application.Features.Mediator.Results.MatchResults;
 using GuessBender_2024.Application.Interfaces.MatchInterfaces;
+using GuessBender_2024.Application.Tools;
 using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,8 +23,9 @@ namespace GuessBender_2024.Application.Features.Mediator.Handlers.MatchHandlers
 
 		public async Task<List<GetMatchWithTeamAndLeagueAndPredictionDetailsByDateAndUserIdQueryResult>> Handle(GetMatchWithTeamAndLeagueAndPredictionDetailsByDateAndUserIdQuery request, CancellationToken cancellationToken)
 		{
-
-			var values = _repository.GetMatchWithTeamAndLeagueAndPredictionDetailsByDateAndUserId(request.Date,request.UserId);
+            HttpClient httpClient = new HttpClient();
+            Time time = httpClient.GetFromJsonAsync<Time>("https://www.timeapi.io/api/Time/current/zone?timeZone=Europe/Istanbul").Result;
+            var values = _repository.GetMatchWithTeamAndLeagueAndPredictionDetailsByDateAndUserId(request.Date,request.UserId);
 			return values.Select(x => new GetMatchWithTeamAndLeagueAndPredictionDetailsByDateAndUserIdQueryResult
 			{
 				Id = x.Id,
@@ -34,7 +37,7 @@ namespace GuessBender_2024.Application.Features.Mediator.Handlers.MatchHandlers
 				AwayTeamName = x.AwayTeam.Name,
 				Code = x.Code,
 				Date = x.Date,
-				Expired = x.Expired,
+				Expired = time.datetime > x.Date,
 				HomeAbbr = x.HomeTeam.Abbr,
 				HomeCountryId = x.HomeTeam.CountryId,
 				HomeLogoId = x.HomeTeam.LogoId,

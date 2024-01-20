@@ -1,0 +1,25 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+    @await Html.PartialAsync("/Views/UILayout/UILayoutHeaderPartial.cshtml")
+<link href="~/sweetAlert/sweetalert.css" rel="stylesheet" />
+<script src="~/sweetAlert/sweetalert.min.js"></script>
+<body>
+    <div id="layout-wrapper">
+        @await Html.PartialAsync("/Views/UILayout/UILayoutNavbarPartial.cshtml")
+        @await Html.PartialAsync("/Views/UILayout/UILayoutSidebarPartial.cshtml")
+        <div class="main-content">
+            @Html.Partial("_NotificationPanel")
+            @RenderBody()
+            @await Html.PartialAsync("/Views/UILayout/UILayoutFooterPartial.cshtml")
+        </div>
+    </div>
+    @await Html.PartialAsync("/Views/UILayout/UILayoutScriptPartial.cshtml")
+</body>
+</html>

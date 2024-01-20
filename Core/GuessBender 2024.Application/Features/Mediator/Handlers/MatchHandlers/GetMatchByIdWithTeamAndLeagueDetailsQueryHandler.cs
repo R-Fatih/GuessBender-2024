@@ -2,11 +2,13 @@
 using GuessBender_2024.Application.Features.Mediator.Results.MatchResults;
 using GuessBender_2024.Application.Interfaces;
 using GuessBender_2024.Application.Interfaces.MatchInterfaces;
+using GuessBender_2024.Application.Tools;
 using GuessBender_2024.Domain.Entities;
 using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,6 +25,8 @@ namespace GuessBender_2024.Application.Features.Mediator.Handlers.MatchHandlers
 
         public async Task<GetMatchByIdWithTeamAndLeagueDetailsQueryResult> Handle(GetMatchByIdWithTeamAndLeagueDetailsQuery request, CancellationToken cancellationToken)
         {
+            HttpClient httpClient = new HttpClient();
+            Time time = httpClient.GetFromJsonAsync<Time>("https://www.timeapi.io/api/Time/current/zone?timeZone=Europe/Istanbul").Result;
             var values =  _repository.GetMatchByIdWithTeamAndLeagueDetails(request.Id);
             return new GetMatchByIdWithTeamAndLeagueDetailsQueryResult
             {
@@ -35,7 +39,7 @@ namespace GuessBender_2024.Application.Features.Mediator.Handlers.MatchHandlers
                 AwayTeamName = values.AwayTeam.Name,
                 Code = values.Code,
                 Date = values.Date,
-                Expired = values.Expired,
+                Expired = time.datetime > values.Date,
                 HomeAbbr = values.HomeTeam.Abbr,
                 HomeCountryId = values.HomeTeam.CountryId,
                 HomeLogoId = values.HomeTeam.LogoId,
