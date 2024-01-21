@@ -1,0 +1,94 @@
+﻿@using GuessBender_2024.Dtos.StandingsDtos
+@model List<ResultStandingMatchesWithDetailsByUsernameDto>
+@{
+    ViewData["Title"] = "MatchDetails";
+    Layout = "~/Views/UILayout/Index.cshtml";
+    int count = 1;
+}
+
+<link href="~/Admin/plugins/datatables/dataTables.bootstrap4.css" rel="stylesheet" type="text/css" />
+<link href="~/Admin/plugins/datatables/responsive.bootstrap4.css" rel="stylesheet" type="text/css" />
+<link href="~/Admin/plugins/datatables/buttons.bootstrap4.css" rel="stylesheet" type="text/css" />
+<link href="~/Admin/plugins/datatables/select.bootstrap4.css" rel="stylesheet" type="text/css" />
+<script src="~/admin/vertical/assets/js/jquery.min.js"></script>
+
+<div class="page-content">
+    <div class="container-fluid">
+
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Maç listesi</h4>
+                        <p class="card-subtitle mb-4">
+                            Maç ekleme, silme, güncellemei arama ve listeleme gibi işlemleri bu sayfa üzerinden gerçekletirebilirsiniz.
+                        </p>
+
+                        <div class="table-responsive">
+                            <table id="basic-datatable" pageLength="100" class="table dt-responsive wrap">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>İç saha</th>
+                                        <th>Deplasman</th>
+                                        <th>Tarih</th>
+                                        <th>Tahmin tarihi</th>
+                                        <th>Maç sonucu</th>
+                                        <th>Tahmin</th>
+                                        <th>Puan</th>
+
+                                        <th> </th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+
+                                        <tr>
+                                            <td>@count</td>
+                                            <td><img width="50" heigth="50" src="https://raw.githubusercontent.com/R-Fatih/ACCDB/main/Logos/TeamLogos/@(@item.HomeTeamLogoId).png" />@item.HomeTeamName</td>
+                                            <td><img width="50" heigth="50" src="https://raw.githubusercontent.com/R-Fatih/ACCDB/main/Logos/TeamLogos/@(@item.AwayTeamLogoId).png" />@item.AwayTeamName</td>
+                                            <td>@item.Date</td>
+                                            <td>@item.PredictionTime</td>
+
+                                            <td>@(item.HomeMS!=null?item.HomeMS+"-"+item.AwayMS:"")</td>
+                                            <td>@(item.HomeScore != null ? item.HomeScore+"-"+ @item.Awayscore : item.Ms1 == true && item.Msx == true ? "MS1 MSX" : item.Ms1 == true && item.Msx == null ? "MS1" : item.Msx == true && item.Ms1 == null && item.Ms2 == null ? "MSX" : item.Ms2 == true && item.Msx == true ? "MS2 MSX" : item.Ms2 == true && item.Msx == null ? "MS2" :"") </td>
+                                            <td>
+                                            @(
+                                                    item.HomeMS == item.HomeScore && item.AwayMS== item.Awayscore?"6":
+                                                                             @item.HomeScore != @item.Awayscore && @item.HomeMS != item.AwayMS&& @item.HomeMS == @item.HomeScore && Math.Abs(item.AwayMS.Value-@item.Awayscore.Value) == 1 ?"2":
+                                                    @item.HomeScore != @item.Awayscore && @item.HomeMS != item.AwayMS && item.AwayMS == @item.Awayscore && Math.Abs(@item.HomeMS.Value - @item.HomeScore.Value) == 1 ? "2" :
+                                                                             @item.HomeMS > item.AwayMS&& item.Ms1 ==true && item.Msx == null ?"3":
+                                                    @item.HomeMS < item.AwayMS && item.Ms2 ==true && item.Msx == null ? "3" :
+                                                    @item.HomeMS == item.AwayMS && item.Msx == true && item.Ms1 == null && item.Ms2 == null  ?"3":
+                                                                            @item.HomeScore != @item.Awayscore && @item.HomeMS != item.AwayMS && @item.HomeMS > item.AwayMS && item.Ms1 == true && item.Msx == true ? "1" :
+                                                                            @item.HomeScore != @item.Awayscore && @item.HomeMS != item.AwayMS && @item.HomeMS < item.AwayMS && item.Ms2 == true && item.Msx ==true ? "1" :""
+                                            )    
+                                            
+                                            </td>
+
+                                                         <td></td>
+                                        </tr>
+                                        count++;
+                                    }
+                                </tbody>
+                            </table>
+                           
+
+                        </div>
+
+                    </div>
+                    <!-- end card-body-->
+                </div>
+                <!-- end card -->
+
+            </div>
+            <!-- end col -->
+            <!-- end col -->
+        </div>
+        <!-- end page title -->
+
+    </div> <!-- container-fluid -->
+</div>

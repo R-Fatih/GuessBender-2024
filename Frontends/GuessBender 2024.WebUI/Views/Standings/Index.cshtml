@@ -45,8 +45,8 @@
                                 <tbody>
                                     @foreach (var item in Model)
                                     {
-
                                         <tr>
+
                                             <td>@(count+1)</td>
                                             <td>@item.Username</td>
                                             <td>@item.ScoreEyt_Points</td>
@@ -55,10 +55,18 @@
                                             <td>@item.MS_Points</td>
                                             <td>@item.Total_Prediction</td>
                                             <td>@item.Total_Points</td>
-                                            <td><a class="btn btn-success">Detaylar</a></td>
+                                         
 
+                                            <td>
+                                                                                            <form method="post">
+                                                    <input type="hidden" name="username" value="@item.Username" id="username" />
+
+                                                <button type="submit" class="btn btn-success">Detaylar</button>
+                                                </form>
+                                            </td>
                                             <td></td>
                                         </tr>
+
                                         count++;
                                     }
                                 </tbody>
