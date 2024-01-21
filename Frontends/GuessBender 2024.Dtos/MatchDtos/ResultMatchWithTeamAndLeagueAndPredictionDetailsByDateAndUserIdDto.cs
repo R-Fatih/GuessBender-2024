@@ -34,6 +34,8 @@ namespace GuessBender_2024.Dtos.MatchDtos
 		public bool? MS2 { get; set; }
 		public bool? MSX { get; set; }
 		public DateTime? PredictionTime { get; set; }
+		public int? PredictionId { get; set; }
+
 
 	}
 }

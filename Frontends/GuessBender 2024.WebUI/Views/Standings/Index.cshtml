@@ -1,0 +1,82 @@
+﻿@using GuessBender_2024.Dtos.StandingsDtos
+@model List<ResultStandingDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/UILayout/Index.cshtml";
+    int count = 0;
+}
+<link href="~/Admin/plugins/datatables/dataTables.bootstrap4.css" rel="stylesheet" type="text/css" />
+<link href="~/Admin/plugins/datatables/responsive.bootstrap4.css" rel="stylesheet" type="text/css" />
+<link href="~/Admin/plugins/datatables/buttons.bootstrap4.css" rel="stylesheet" type="text/css" />
+<link href="~/Admin/plugins/datatables/select.bootstrap4.css" rel="stylesheet" type="text/css" />
+<script src="~/admin/vertical/assets/js/jquery.min.js"></script>
+
+<div class="page-content">
+    <div class="container-fluid">
+
+        <!-- start page title -->
+        <div class="row">
+            
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Puan durumu</h4>
+
+                      
+
+                        <div class="table-responsive">
+                            <table id="basic-datatable" pageLength="100" class="table dt-responsive wrap">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Kullanıcı</th>
+                                        <th>Skor Eyt</th>
+                                        <th>MS Eyt</th>
+                                        <th>Skor</th>
+                                        <th>MS</th>
+                                        <th>Toplam tahmin</th>
+                                        <th>Toplam puan</th>
+                                        <th>Detaylar</th>
+
+                                        <th> </th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+
+                                        <tr>
+                                            <td>@(count+1)</td>
+                                            <td>@item.Username</td>
+                                            <td>@item.ScoreEyt_Points</td>
+                                            <td>@item.MSEyt_Points</td>
+                                            <td>@item.Score_Points</td>
+                                            <td>@item.MS_Points</td>
+                                            <td>@item.Total_Prediction</td>
+                                            <td>@item.Total_Points</td>
+                                            <td><a class="btn btn-success">Detaylar</a></td>
+
+                                            <td></td>
+                                        </tr>
+                                        count++;
+                                    }
+                                </tbody>
+                            </table>
+                           
+
+                        </div>
+
+                    </div>
+                    <!-- end card-body-->
+                </div>
+                <!-- end card -->
+
+            </div>
+            <!-- end col -->
+            <!-- end col -->
+        </div>
+        <!-- end page title -->
+
+    </div> <!-- container-fluid -->
+</div>

@@ -11,5 +11,6 @@ namespace GuessBender_2024.Application.Interfaces.StandingInterfaces
     {
         List<Standing> GetAllStanding();
         List<Standing> GetAllStandingByCountryId(int countryId);
+        List<StandingMatch> GetAllStandingMatchesByUsername(string username);
     }
 }

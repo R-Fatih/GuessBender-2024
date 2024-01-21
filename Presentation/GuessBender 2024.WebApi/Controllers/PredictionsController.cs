@@ -66,5 +66,13 @@ namespace GuessBender_2024.WebApi.Controllers
 			await _mediator.Send(command);
 			return Ok("Tahmin başarıyla güncellendi.");
 		}
+		[Authorize(Roles = "Admin")]
+		[HttpGet("Delete/{id}")]
+		public async Task<IActionResult> DeletePrediction(int id)
+		{
+			await _mediator.Send(new RemovePredictionCommand(id));
+			return Ok("Tahmin başarıyla slindi");
+
+		}
 	}
 }

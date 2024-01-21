@@ -232,7 +232,7 @@ namespace GuessBender_2024.WebUI.Areas.Admin.Controllers
 						var responseMessage2 = await client.GetAsync("https://localhost:7185/api/Mackoliks/get?adres=" + item.Code);
 						var jsonData2 = await responseMessage2.Content.ReadAsStringAsync();
 						var values2 = JsonConvert.DeserializeObject<UpdateMatchDto>(jsonData2);
-						Update(new UpdateMatchDto
+					await	Update(new UpdateMatchDto
 						{
 							AwayTeamId = item.AwayTeamId,
 							Code = item.Code,
@@ -253,7 +253,7 @@ namespace GuessBender_2024.WebUI.Areas.Admin.Controllers
 
 
 			}
-			return View();
+			return RedirectToAction("Index", "AdminMatches", new { area = "Admin" });
 		}
 
 		[HttpGet]

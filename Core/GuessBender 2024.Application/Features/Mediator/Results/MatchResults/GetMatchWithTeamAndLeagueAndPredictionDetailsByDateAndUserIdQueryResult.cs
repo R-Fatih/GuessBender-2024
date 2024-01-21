@@ -34,6 +34,7 @@ namespace GuessBender_2024.Application.Features.Mediator.Results.MatchResults
 		public bool? MS2 { get; set; }
 		public bool? MSX { get; set; }
 		public DateTime? PredictionTime { get; set; }
+		public int? PredictionId { get; set; }
 
 	}
 }

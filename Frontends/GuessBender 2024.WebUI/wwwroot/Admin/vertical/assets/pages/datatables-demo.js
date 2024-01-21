@@ -17,7 +17,8 @@ $(document).ready(function() {
         },
         "drawCallback": function () {
             $('.dataTables_paginate > .pagination').addClass('pagination-rounded');
-        }
+        },
+        order: [[7, 'desc']]
     });
 
     //Buttons examples

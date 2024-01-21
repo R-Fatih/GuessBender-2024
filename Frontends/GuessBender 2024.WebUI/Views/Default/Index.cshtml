@@ -1,129 +1,208 @@
 ﻿@using GuessBender_2024.Dtos.MatchDtos
 @using GuessBender_2024.Dtos.PredictionDtos
-@model List<ResultMatchWithTeamAndLeagueAndPredictionDetailsByDateAndUserIdDto>
+@model (List<ResultMatchWithTeamAndLeagueAndPredictionDetailsByDateAndUserIdDto>,List<CreatePredictionDto>)
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/UILayout/Index.cshtml";
-    int count = 0;
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/UILayout/Index.cshtml";
+	int count = 0;
 }
-
+<script src="~/admin/vertical/assets/js/jquery.min.js"></script>
 <link href="~/theme/thememain.css" rel="stylesheet" />
 <script>
-    function handler(e) {
+	function handler(e) {
 
-        //  alert(e.target.value);
+		//  alert(e.target.value);
 
-        // make a HTTP GET request and pass currentObject as a queryparam
-        //      var a = @Url.Action("Index", "Default", new RouteValueDictionary("xxx"));
-        //     a = a.replace("xxx", e.target.value)
+		// make a HTTP GET request and pass currentObject as a queryparam
+		//      var a = @Url.Action("Index", "Default", new RouteValueDictionary("xxx"));
+		//     a = a.replace("xxx", e.target.value)
 
-        var url = '@Url.Action("Index", "Default", new { dt = "__id__" })';
-        window.location.href = url.replace('__id__', e.target.value)
-        // window.location = a;
+		var url = '@Url.Action("Index", "Default", new { dt = "__id__" })';
+		window.location.href = url.replace('__id__', e.target.value)
+		// window.location = a;
 
 
-    }
+	}
 
 </script>
 <script>
-    function GetButton(x, y) {
-        var button = document.getElementById(x + " " + y);
-        console.log(button.className);
+	function GetButton(x, y, z) {
+		if (z != true) {
 
-        if (button.className == "button") {
-            button.className = "button selected";
-            if (y.endsWith("1") && button.className == "button selected") {
-                var button2 = document.getElementById(x + " " + 2);
-                button2.setAttribute("disabled", "true");
-            }
-            if (y.endsWith("2") && button.className == "button selected") {
-                var button2 = document.getElementById(x + " " + 1);
-                button2.setAttribute("disabled", "true");
-            }
-            return "true";
-        }
-        else if (button.className == "button selected") {
-            button.className = "button";
-            if (y.endsWith("1") && button.className == "button") {
-                var button2 = document.getElementById(x + " " + 2);
-                button2.removeAttribute("disabled");
-            }
-            if (y.endsWith("2") && button.className == "button") {
-                var button2 = document.getElementById(x + " " + 1);
-                button2.removeAttribute("disabled");
-            }
-            return "false";
+			var button = document.getElementById(x + " " + y);
+			console.log(button.className);
+			var input1 = document.getElementById(x + " HS");
+			var input2 = document.getElementById(x + " AS");
+			if (button.className == "button") {
+				button.className = "button selected";
+				if (y.endsWith("1") && button.className == "button selected") {
+					var button2 = document.getElementById(x + " " + 2);
+					button2.setAttribute("disabled", "true");
+					var inputaspfor = document.getElementById('valueof '+x+' 1')
+					inputaspfor.setAttribute("value", "true");
+					input1.setAttribute("disabled", "true");
+					input2.setAttribute("disabled", "true");
+				}
+				if (y.endsWith("2") && button.className == "button selected") {
+					var button2 = document.getElementById(x + " " + 1);
+					button2.setAttribute("disabled", "true");
+					var inputaspfor = document.getElementById('valueof ' + x + ' 2')
+					inputaspfor.setAttribute("value", "true");
+					input1.setAttribute("disabled", "true");
+					input2.setAttribute("disabled", "true");
+				}
+				if (y.endsWith("X") && button.className == "button selected") { 
+					var inputaspfor = document.getElementById('valueof ' + x + ' X')
+					inputaspfor.setAttribute("value", "true");
+				}
+				var button5 = document.getElementById(x + " 1");
+				var button6 = document.getElementById(x + " X");
+				var button7 = document.getElementById(x + " 2");
+				if (button5.className == "button" && button6.className == "button" && button7.className == "button") {
+					input1.removeAttribute("disabled");
+					input2.removeAttribute("disabled");
+				} else {
+					input1.setAttribute("disabled", "true");
+					input2.setAttribute("disabled", "true");
+				}
+				return "true";
+			}
+			else if (button.className == "button selected") {
+				button.className = "button";
+				if (y.endsWith("1") && button.className == "button") {
+					var button2 = document.getElementById(x + " " + 2);
+					button2.removeAttribute("disabled");
+					var inputaspfor = document.getElementById('valueof ' + x + ' 1')
+					inputaspfor.removeAttribute("value");
+				}
+				if (y.endsWith("2") && button.className == "button") {
+					var button2 = document.getElementById(x + " " + 1);
+					button2.removeAttribute("disabled");
+					var inputaspfor = document.getElementById('valueof ' + x + ' 2')
+					inputaspfor.removeAttribute("value");
+				}
+				if (y.endsWith("X") && button.className == "button") { 
+					var inputaspfor = document.getElementById('valueof ' + x + ' X')
+					inputaspfor.removeAttribute("value");
+				}
+				var button5 = document.getElementById(x + " 1");
+				var button6 = document.getElementById(x + " X");
+				var button7 = document.getElementById(x + " 2");
+				if (button5.className == "button" && button6.className == "button" && button7.className == "button") {
+					input1.removeAttribute("disabled");
+					input2.removeAttribute("disabled");
+				} else {
+					input1.setAttribute("disabled", "true");
+					input2.setAttribute("disabled", "true");
+				}
+				return "false";
 
-        }
+			}
 
+			
 
-    }
+		}
+	}
 
 </script>
+<script>
+	function GetInput(x, y) {
+		var input1 = document.getElementById(x + " HS");
+		var input2 = document.getElementById(x + " AS");
+		var button1 = document.getElementById(x + " 1");
+		var button2 = document.getElementById(x + " X");
+		var button3 = document.getElementById(x + " 2");
+
+		if (y != true) {
+
+			if (input1.value != "" || input2.value != "") {
+
+
+				button1.setAttribute("disabled", "true");
+				button2.setAttribute("disabled", "true");
+				button3.setAttribute("disabled", "true");
+			} else {
+				button1.removeAttribute("disabled" );
+				button2.removeAttribute("disabled");
+				button3.removeAttribute("disabled");
+			}
+
+		}
+	}
+</script>
+
 <div class="page-content">
-    <div class="container-fluid">
+	<div class="container-fluid">
 
-        <!-- start page title -->
-        <div class="row">
-            <div class="col-xl-12">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">Maç listesi</h4>
-                        <input id="date" value="@ViewBag.date" onchange="handler(event);" style="float:right" type="date" />
-                        <p class="card-subtitle mb-4">
-                            Maç ekleme, silme, güncellemei arama ve listeleme gibi işlemleri bu sayfa üzerinden gerçekletirebilirsiniz.
-                        </p>
+		<!-- start page title -->
+		<div class="row">
+			<div class="col-xl-12">
+				<div class="card">
+					<div class="card-body">
+						<h4 class="card-title">Maç listesi</h4>
+						<input id="date" value="@ViewBag.date" onchange="handler(event);" style="float:right" type="date" />
+						<p class="card-subtitle mb-4">
+							Maç ekleme, silme, güncellemei arama ve listeleme gibi işlemleri bu sayfa üzerinden gerçekletirebilirsiniz.
+						</p>
 
-                        <div class="table-responsive">
-                            <table class="table dt-responsive wrap">
-                                <thead>
-                                    <tr>
-                                       
+						<div class="table-responsive">
+							<form method="post">
 
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var item in Model)
-                                    {
+							<table class="table dt-responsive wrap">
+								<thead>
+									<tr>
+									</tr>
+								</thead>
 
-                                        <tr>
-                                            <td><img width="50" heigth="50" src="https://raw.githubusercontent.com/R-Fatih/ACCDB/main/Logos/TeamLogos/@(@item.HomeLogoId).png" /><img width="50" heigth="50" src="https://raw.githubusercontent.com/R-Fatih/ACCDB/main/Logos/TeamLogos/@(@item.AwayLogoId).png" /></td>
-                                            <td>@item.Date.ToShortTimeString()</td>
-                                           @*      <button @onclick="()=>onClick(match,'1')" style="" id="@match.Id 1" class="@getMSStatus(match.Prediction[0].MS1)" disabled="@((match.Prediction[0].HomeScore != null || match.Prediction[0].AwayScore != null) | match.Expired | match.Prediction[0].MS2)">1</button>
-                                                <button @onclick="()=>onClick(match,'X')" style="" id="@match.Id X" class="@getMSStatus(match.Prediction[0].MSX)" disabled="@((match.Prediction[0].HomeScore != null || match.Prediction[0].AwayScore != null) | match.Expired)">X</button>
-                                                <button @onclick="()=>onClick(match,'2')" style="" id="@match.Id 2" class="@getMSStatus(match.Prediction[0].MS2)" disabled="@((match.Prediction[0].HomeScore != null || match.Prediction[0].AwayScore != null) | match.Expired | match.Prediction[0].MS1)">2</button>
-                                        *@
-                                            <td><input disabled="@(item.Expired|(item.MS1!=null||item.MS2!=null||item.MSX!=null))" min="0" type="number" /><input  disabled="@(item.Expired|(item.MS1!=null||item.MS2!=null||item.MSX!=null))" min="0" type="number" /></td>
-                                            <td>  <button disabled="@((item.HomeScorePrediction != null || item.AwayScorePrediction != null) | item.Expired | item.MS2)" class="@(item.MS1 == true ? "button selected" : "button")" id="@item.Id 1" onclick="GetButton(@item.Id,'1')" style=""> 1</button>
-                                                <button disabled="@((item.HomeScorePrediction != null || item.AwayScorePrediction != null) | item.Expired)" class="@(item.MSX == true ? "button selected" : "button")" id="@item.Id X" onclick="GetButton(@item.Id,'X')" style="">X</button>
-                                                <button disabled="@((item.HomeScorePrediction  != null || item.AwayScorePrediction != null) | item.Expired | item.MS1)" class="@(item.MS2 == true ? "button selected" : "button")" id="@item.Id 2" onclick="GetButton(@item.Id,'2')" style="">2</button>
-                                            </td>
-                                     
+								<tbody>
+									@for (int i = 0; i < Model.Item1.Count; i++)
+										
+									{
 
-                                            <td>@item.HomeMS</td>
-                                            <td>@item.AwayMS</td>
+										<tr>
+											<td>@Model.Item1[i].Date.ToShortTimeString()</td>
 
-                                        </tr>
-                                        count++;
-                                    }
-                                </tbody>
-                            </table>
-                            <a href="/Admin/AdminMatches/CreateMatch/" class="btn btn-primary">Yeni maç</a>
-                         
+											<td><img width="35" heigth="35" src="https://raw.githubusercontent.com/R-Fatih/ACCDB/main/Logos/TeamLogos/@(@Model.Item1[i].HomeLogoId).png" /><img width="35" heigth="35" src="https://raw.githubusercontent.com/R-Fatih/ACCDB/main/Logos/TeamLogos/@(@Model.Item1[i].AwayLogoId).png" /></td>
+											@*      <button @onclick="()=>onClick(match,'1')" style="" id="@match.Id 1" class="@getMSStatus(match.Prediction[0].MS1)" disabled="@((match.Prediction[0].HomeScore != null || match.Prediction[0].AwayScore != null) | match.Expired | match.Prediction[0].MS2)">1</button>
+										<button @onclick="()=>onClick(match,'X')" style="" id="@match.Id X" class="@getMSStatus(match.Prediction[0].MSX)" disabled="@((match.Prediction[0].HomeScore != null || match.Prediction[0].AwayScore != null) | match.Expired)">X</button>
+										<button @onclick="()=>onClick(match,'2')" style="" id="@match.Id 2" class="@getMSStatus(match.Prediction[0].MS2)" disabled="@((match.Prediction[0].HomeScore != null || match.Prediction[0].AwayScore != null) | match.Expired | match.Prediction[0].MS1)">2</button>
+										*@
+										<input asp-for=Item1[i].Date type="hidden"/>
+												<input id="valueof @Model.Item1[i].Id 1" asp-for=Item2[i].MS1 value="@Model.Item1[i].MS1" type="hidden" />
+												<input id="valueof @Model.Item1[i].Id 2" asp-for=Item2[i].MS2 value="@Model.Item1[i].MS2" type="hidden" />
+												<input id="valueof @Model.Item1[i].Id X" asp-for=Item2[i].MSX value="@Model.Item1[i].MSX" type="hidden" />
 
-                        </div>
+											<td>
+													<input asp-for="@Model.Item1[i].HomeScorePrediction" style="margin:5px" disabled="@(Model.Item1[i].Expired|(Model.Item1[i].MS1!=null||Model.Item1[i].MS2!=null||Model.Item1[i].MSX!=null))" onchange="GetInput(@Model.Item1[i].Id,'@Model.Item1[i].Expired')" id="@Model.Item1[i].Id HS" min="0" type="number" /><input asp-for="@Model.Item1[i].AwayScorePrediction" style="margin:5px" disabled="@(Model.Item1[i].Expired|(Model.Item1[i].MS1!=null||Model.Item1[i].MS2!=null||Model.Item1[i].MSX!=null))" onchange="GetInput(@Model.Item1[i].Id,'@Model.Item1[i].Expired')" id="@Model.Item1[i].Id AS" min="0" type="number" />
+													<button disabled="@((@Model.Item1[i].HomeScorePrediction!=null||@Model.Item1[i].AwayScorePrediction!=null)|@Model.Item1[i].Expired|@Model.Item1[i].MS2)" type="button" class="@(Model.Item1[i].MS1 == true ? "button selected" : "button")" id="@Model.Item1[i].Id 1" onclick="GetButton(@Model.Item1[i].Id,'1','@Model.Item1[i].Expired')" style=""> 1</button>
+													<button type="button" disabled="@((@Model.Item1[i].HomeScorePrediction!=null||@Model.Item1[i].AwayScorePrediction!=null)|@Model.Item1[i].Expired)" class="@(Model.Item1[i].MSX == true ? "button selected" : "button")" id="@Model.Item1[i].Id X" onclick="GetButton(@Model.Item1[i].Id,'X','@Model.Item1[i].Expired')" style="">X</button>
+													<button disabled="@((@Model.Item1[i].HomeScorePrediction!=null||@Model.Item1[i].AwayScorePrediction!=null)|@Model.Item1[i].Expired|@Model.Item1[i].MS1)" type="button"  class="@(Model.Item1[i].MS2 == true ? "button selected" : "button")" id="@Model.Item1[i].Id 2" onclick="GetButton(@Model.Item1[i].Id,'2','@Model.Item1[i].Expired')" style="">2</button>
+												@Model.Item1[i].HomeMS-@Model.Item1[i].AwayMS
+											</td>
 
-                    </div>
-                    <!-- end card-body-->
-                </div>
-                <!-- end card -->
 
-            </div>
-            <!-- end col -->
-            <!-- end col -->
-        </div>
-        <!-- end page title -->
+										</tr>
+										count++;
+									}
+								</tbody>
+							</table>
+							<button type="submit" class="btn btn-primary">Kaydet</button>
+																</form>
 
-    </div> <!-- container-fluid -->
+
+						</div>
+
+					</div>
+					<!-- end card-body-->
+				</div>
+				<!-- end card -->
+
+			</div>
+			<!-- end col -->
+			<!-- end col -->
+		</div>
+		<!-- end page title -->
+
+	</div> <!-- container-fluid -->
 </div>
 

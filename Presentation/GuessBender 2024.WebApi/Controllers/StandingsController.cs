@@ -29,5 +29,11 @@ namespace GuessBender_2024.WebApi.Controllers
         {
             return Ok(await _mediator.Send(new GetStandingByCountryIdQuery(id)));
         }
+        [Authorize(Roles = "Admin, Comp")]
+        [HttpGet("GetStandingMatchesByUsername")]
+        public async Task<IActionResult> GetStandingMatchesByUsername(string username)
+        {
+            return Ok(await _mediator.Send(new GetStandingMatchesWithDetailsByUsernameQuery(username)));
+        }
     }
 }

@@ -54,6 +54,7 @@ namespace GuessBender_2024.Application.Features.Mediator.Handlers.MatchHandlers
 				MS2=x.Prediction.Where(x=>x.UserId==request.UserId).FirstOrDefault()?.MS2,
 				MSX=x.Prediction.Where(x=>x.UserId==request.UserId).FirstOrDefault()?.MSX,
 				PredictionTime= x.Prediction.Where(x => x.UserId == request.UserId).FirstOrDefault()?.PredictionTime,
+				PredictionId= x.Prediction.Where(x => x.UserId == request.UserId).FirstOrDefault()?.Id,
 			}).ToList();
 		}
 	}
