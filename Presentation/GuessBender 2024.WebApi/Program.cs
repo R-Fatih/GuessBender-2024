@@ -15,6 +15,8 @@ using GuessBender_2024.Application.Interfaces.StandingInterfaces;
 using GuessBender_2024.Persistance.Repositories.StandingRepositories;
 using GuessBender_2024.Application.Interfaces.MatchInterfaces;
 using GuessBender_2024.Persistance.Repositories.MatchRepositories;
+using GuessBender_2024.Application.Interfaces.LeagueStandingInterfaces;
+using GuessBender_2024.Persistance.Repositories.LeagueStandingRepositories;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -52,6 +54,7 @@ builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped(typeof(IMatchRepository), typeof(MatchRepository));
 builder.Services.AddScoped(typeof(IAuthorizationRepository), typeof(AuthorizationRepository));
 builder.Services.AddScoped(typeof(IStandingRepository), typeof(StandingRepository));
+builder.Services.AddScoped(typeof(ILeagueStandingRepository), typeof(LeagueStandingRepository));
 
 
 
