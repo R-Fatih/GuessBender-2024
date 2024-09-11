@@ -11,7 +11,7 @@ namespace GuessBender_2024.Persistance.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=N1NWPLSK12SQL-v01.shr.prod.ams1.secureserver.net;Database=guessbender;User=guessbender_admin_database;Password=6K2tgi60?;Trusted_Connection=True;TrustServerCertificate=True;MultipleActiveResultSets=True;Integrated security=false");
+            optionsBuilder.UseSqlServer("...");
         }
         public DbSet<Match> Match { get; set; } = default!;
         public DbSet<Team> Team { get; set; } = default!;
